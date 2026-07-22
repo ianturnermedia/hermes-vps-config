@@ -1,0 +1,15 @@
+services:
+  dropbox:
+    image: ghcr.io/toroskilly/sync-dropbox:latest
+    container_name: dropbox
+    restart: unless-stopped
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: "Europe/Berlin"
+    volumes:
+      - dropbox-config:/config
+      - /root/secondbrain:/dropbox
+
+volumes:
+  dropbox-config:

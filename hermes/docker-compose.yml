@@ -1,0 +1,14 @@
+services:
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes
+    restart: unless-stopped
+    command: ["gateway", "run"]
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
+      - net.ipv6.conf.default.disable_ipv6=1
+    volumes:
+      - /root/hermes/data:/opt/data
+      - /root/secondbrain/SecondBrain:/workspace/secondbrain
+    ports:
+      - "127.0.0.1:8642:8642"
